@@ -13,10 +13,6 @@ export default ButtonSubmit;
 
 ButtonSubmit.propTypes = {
   children: PropTypes.elementType.isRequired,
-  type: PropTypes.oneOf(['submit', 'button', 'reset']),
+  type: PropTypes.oneOf(['submit', 'button', 'reset']).isRequired,
   onSubmit: PropTypes.func,
-};
-
-ButtonSubmit.defaultProps = {
-  type: 'submit',
 };

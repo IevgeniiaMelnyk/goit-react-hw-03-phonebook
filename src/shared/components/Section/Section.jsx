@@ -16,5 +16,5 @@ export default Section;
 Section.propTypes = {
   firstTitle: PropTypes.string,
   secondTitle: PropTypes.string,
-  children: PropTypes.element,
+  children: PropTypes.any,
 };

@@ -1,11 +1,11 @@
 import PropTypes from 'prop-types';
-import { Btn } from '../Button.styled.js';
+import { DeleteBtn } from '../Button.styled.js';
 
 const ButtonClick = ({ children, type, onClick }) => {
   return (
-    <Btn onClick={onClick} type={type}>
+    <DeleteBtn onClick={onClick} type={type}>
       {children}
-    </Btn>
+    </DeleteBtn>
   );
 };
 
