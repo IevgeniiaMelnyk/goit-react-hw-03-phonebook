@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { Btn } from '../Button.styled.js';
+import { Btn } from './Button.styled.js';
 
 const ButtonSubmit = ({ children, type, onSubmit }) => {
   return (

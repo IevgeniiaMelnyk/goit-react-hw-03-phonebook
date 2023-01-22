@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import ButtonClick from '../Buttons/ButtonClick/ButtonClick';
+import ButtonClick from '../Buttons/ButtonClick';
 import { Text } from './ContactItem.styled';
 
 const ContactItem = ({ id, name, number, onDeleteContact }) => {

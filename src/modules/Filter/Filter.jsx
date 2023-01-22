@@ -1,12 +1,16 @@
+import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { Input, Label } from './Filter.styled';
 
-const Filter = ({ title, value, onChange }) => {
+const Filter = ({ onChange, value, text }) => {
+  const filterId = nanoid();
+
   return (
     <>
-      <Label>
-        {title}
+      <Label htmlFor={filterId}>
+        {text}
         <Input
+          id={filterId}
           type="text"
           name="filter"
           placeholder="Name"
@@ -21,7 +25,7 @@ const Filter = ({ title, value, onChange }) => {
 export default Filter;
 
 Filter.propTypes = {
-  title: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
   onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
 };

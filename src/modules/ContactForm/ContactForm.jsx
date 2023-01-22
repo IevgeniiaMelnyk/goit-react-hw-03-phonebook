@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
-import ButtonSubmit from 'shared/components/Buttons/ButtonSubmit/ButtonSubmit';
+import ButtonSubmit from 'shared/components/Buttons/ButtonSubmit';
 import { Label, Input, Form } from './ContactForm.styled';
 
 class ContactForm extends Component {
@@ -9,9 +9,16 @@ class ContactForm extends Component {
     number: '',
   };
 
+  nameId = nanoid();
+  numberId = nanoid();
+
   handleChange = e => {
     const { name, value } = e.currentTarget;
     this.setState({ [name]: value });
+  };
+
+  resetState = () => {
+    this.setState({ name: '', number: '' });
   };
 
   onSubmit = e => {
@@ -24,15 +31,17 @@ class ContactForm extends Component {
       number: form.elements.number.value,
     };
     form.reset();
+    this.resetState();
     this.props.onSubmit(contact);
   };
 
   render() {
     return (
       <Form onSubmit={this.onSubmit}>
-        <Label>
+        <Label htmlFor={this.nameId}>
           Name
           <Input
+            id={this.nameId}
             value={this.name}
             onChange={this.handleChange}
             type="text"
@@ -43,9 +52,10 @@ class ContactForm extends Component {
             required
           />
         </Label>
-        <Label>
+        <Label htmlFor={this.numberId}>
           Number
           <Input
+            id={this.numberId}
             value={this.number}
             onChange={this.handleChange}
             type="tel"

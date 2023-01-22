@@ -18,9 +18,14 @@ class PhoneBook extends Component {
 
   formSubmit = contact => {
     this.setState(prevState => ({
-      contacts: prevState.contacts.concat(contact),
+      // contacts: prevState.contacts.concat(contact),
+      contacts: [contact, ...prevState.contacts],
     }));
   };
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   console.log(prevState.contacts === this.state.contacts);
+  // }
 
   deleteContact = contactId => {
     this.setState(prevState => ({
@@ -30,10 +35,19 @@ class PhoneBook extends Component {
 
   findByName = e => {
     this.setState({ filter: e.currentTarget.value });
-    console.log(this.state.filter);
+  };
+
+  showFilterContacts = () => {
+    const { filter, contacts } = this.state;
+    const normalizedFilter = filter.toLowerCase();
+    return contacts.filter(contact =>
+      contact.name.toLowerCase().includes(normalizedFilter)
+    );
   };
 
   render() {
+    const visibleContacts = this.showFilterContacts();
+
     return (
       <>
         <Section secondTitle="Phone Book">
@@ -42,12 +56,12 @@ class PhoneBook extends Component {
         <Section secondTitle="Contacts">
           <Box>
             <Filter
-              title="Find contacts by name"
-              value={this.state.filter}
               onChange={this.findByName}
+              value={this.state.filter}
+              text="Find contacts by name"
             />
             <ContactList
-              contacts={this.state.contacts}
+              contacts={visibleContacts}
               onDeleteContact={this.deleteContact}
             />
           </Box>
