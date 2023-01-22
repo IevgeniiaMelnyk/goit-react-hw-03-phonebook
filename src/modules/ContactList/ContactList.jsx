@@ -31,3 +31,7 @@ ContactList.propTypes = {
   ),
   onDeleteContact: PropTypes.func.isRequired,
 };
+
+ContactList.defaultProps = {
+  contacts: [],
+};
