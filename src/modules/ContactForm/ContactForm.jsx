@@ -25,6 +25,7 @@ class ContactForm extends Component {
     e.preventDefault();
     const form = e.currentTarget;
     const id = nanoid();
+
     const contact = {
       id: id,
       name: form.elements.name.value,

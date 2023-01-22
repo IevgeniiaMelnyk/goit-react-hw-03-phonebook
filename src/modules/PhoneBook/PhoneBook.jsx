@@ -16,10 +16,19 @@ class PhoneBook extends Component {
     filter: '',
   };
 
-  formSubmit = contact => {
+  formSubmit = ({ id, name, number }) => {
+    if (
+      this.state.contacts.find(
+        contact => name.toLowerCase() === contact.name.toLowerCase()
+      )
+    ) {
+      alert(`${name} is already in contacts.`);
+      return;
+    }
+
     this.setState(prevState => ({
+      contacts: [{ id, name, number }, ...prevState.contacts],
       // contacts: prevState.contacts.concat(contact),
-      contacts: [contact, ...prevState.contacts],
     }));
   };
 
