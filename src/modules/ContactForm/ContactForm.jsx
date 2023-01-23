@@ -1,6 +1,6 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import { nanoid } from 'nanoid';
+import PropTypes from 'prop-types';
 import ButtonSubmit from 'shared/components/Buttons/ButtonSubmit';
 import { Label, Input, Form } from './ContactForm.styled';
 
@@ -25,16 +25,9 @@ class ContactForm extends Component {
   onSubmit = e => {
     e.preventDefault();
     const form = e.currentTarget;
-    const id = nanoid();
-
-    const contact = {
-      id: id,
-      name: form.elements.name.value,
-      number: form.elements.number.value,
-    };
     form.reset();
     this.resetState();
-    this.props.onSubmit(contact);
+    this.props.onSubmit(this.state);
   };
 
   render() {

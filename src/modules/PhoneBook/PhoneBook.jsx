@@ -1,22 +1,26 @@
 import { Component } from 'react';
+import { nanoid } from 'nanoid';
 import Section from 'shared/components/Section/Section';
 import Filter from 'modules/Filter/Filter';
 import ContactForm from 'modules/ContactForm/ContactForm';
 import ContactList from 'modules/ContactList/ContactList';
 import { Box } from './PhoneBook.staled';
+import items from 'modules/items';
 
 class PhoneBook extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [...items],
     filter: '',
   };
 
-  formSubmit = ({ id, name, number }) => {
+  formSubmit = ({ name, number }) => {
+    const id = nanoid();
+
+    const contact = {
+      id: id,
+      name: name,
+      number: number,
+    };
     if (
       this.state.contacts.find(
         contact => name.toLowerCase() === contact.name.toLowerCase()
@@ -27,7 +31,7 @@ class PhoneBook extends Component {
     }
 
     this.setState(prevState => ({
-      contacts: [{ id, name, number }, ...prevState.contacts],
+      contacts: [contact, ...prevState.contacts],
       // contacts: prevState.contacts.concat(contact),
     }));
   };
