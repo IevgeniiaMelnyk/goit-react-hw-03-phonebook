@@ -1,16 +1,12 @@
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import { Input, Label } from './Filter.styled';
 
 const Filter = ({ onChange, value, text }) => {
-  const filterId = nanoid();
-
   return (
     <>
-      <Label htmlFor={filterId}>
+      <Label>
         {text}
         <Input
-          id={filterId}
           type="text"
           name="filter"
           placeholder="Name"
