@@ -20,7 +20,6 @@ class ContactForm extends Component {
 
   onSubmit = e => {
     e.preventDefault();
-    const form = e.currentTarget;
     this.resetState();
     this.props.onSubmit(this.state);
   };
