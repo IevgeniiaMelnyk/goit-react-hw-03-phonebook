@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import { nanoid } from 'nanoid';
 import PropTypes from 'prop-types';
 import ButtonSubmit from 'shared/components/Buttons/ButtonSubmit';
 import { Label, Input, Form } from './ContactForm.styled';
