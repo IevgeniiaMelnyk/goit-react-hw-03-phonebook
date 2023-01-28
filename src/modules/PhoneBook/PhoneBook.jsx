@@ -13,6 +13,20 @@ class PhoneBook extends Component {
     filter: '',
   };
 
+  componentDidMount() {
+    const contacts = JSON.parse(localStorage.getItem('contacts'));
+    if (contacts?.length)
+      // items && items.length
+      this.setState({ contacts });
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { contacts } = this.state;
+    if (prevState.contacts.length !== contacts.length) {
+      localStorage.setItem('contacts', JSON.stringify(contacts));
+    }
+  }
+
   formSubmit = ({ name, number }) => {
     const id = nanoid();
 
@@ -52,6 +66,9 @@ class PhoneBook extends Component {
 
   showFilterContacts = () => {
     const { filter, contacts } = this.state;
+    if (!filter) {
+      return contacts;
+    }
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(normalizedFilter)
